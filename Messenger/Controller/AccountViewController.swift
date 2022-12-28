@@ -12,9 +12,7 @@ class AccountViewController: UIViewController, UINavigationControllerDelegate {
     var name : String?
     var email : String?
     var password : String?
-    var phone : String?
     var image : UIImage?
-    var birthDate : Date?
     
 
     //MARK: Connections
@@ -24,9 +22,7 @@ class AccountViewController: UIViewController, UINavigationControllerDelegate {
     
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var birthDatePicker: UIDatePicker!
-    
-    @IBOutlet weak var phoneTextField: UITextField!
+
     
     @IBOutlet weak var profileImage: UIImageView!
     
@@ -42,8 +38,6 @@ class AccountViewController: UIViewController, UINavigationControllerDelegate {
         nameTextField.isUserInteractionEnabled = true
         emailTextField.isUserInteractionEnabled = true
         passwordTextField.isUserInteractionEnabled = true
-        birthDatePicker.isUserInteractionEnabled = true
-        phoneTextField.isUserInteractionEnabled = true
         profileImageButton.isUserInteractionEnabled = true
     }
     
@@ -51,8 +45,6 @@ class AccountViewController: UIViewController, UINavigationControllerDelegate {
         nameTextField.isUserInteractionEnabled = false
         emailTextField.isUserInteractionEnabled = false
         passwordTextField.isUserInteractionEnabled = false
-        birthDatePicker.isUserInteractionEnabled = false
-        phoneTextField.isUserInteractionEnabled = false
         profileImageButton.isUserInteractionEnabled = false
     }
     
@@ -72,8 +64,6 @@ class AccountViewController: UIViewController, UINavigationControllerDelegate {
         nameTextField.text = name
         emailTextField.text = email
         passwordTextField.text = password
-//        birthDatePicker.date = birthDate
-        phoneTextField.text = phone
         profileImage.image = image
         
     }
