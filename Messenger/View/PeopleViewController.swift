@@ -13,7 +13,7 @@ class PeopleViewController: UIViewController {
     
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    
     
     var filtereData = [String]()
     
@@ -25,11 +25,25 @@ class PeopleViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        searchBar.delegate = self
     }
     
 
-
+    @IBAction func editingAction(_ sender: UITextField) {
+        filtereData = []
+                
+                if sender.text == ""{
+                    filtereData = data
+                } else {
+                    for name in data{
+                        if name.uppercased().contains((sender.text?.uppercased())!){
+                            filtereData.append(name)
+                        }
+                    }
+                }
+                self.tableView.reloadData()
+        
+    }
+    
 }
 
 extension PeopleViewController: UITableViewDelegate, UITableViewDataSource{
@@ -54,21 +68,4 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource{
     
 }
 
-extension PeopleViewController: UISearchBarDelegate{
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        filtereData = []
-        
-        if searchText == ""{
-            filtereData = data
-        }
-        
-        for name in data{
-            if name.uppercased().contains(searchText.uppercased()){
-                filtereData.append(name)
-            }
-        }
-        self.tableView.reloadData()
-    }
-    
-}
+
