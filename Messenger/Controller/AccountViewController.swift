@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController , UIImagePickerController , UINavigationControllerDelegate {
+class AccountViewController: UIViewController, UINavigationControllerDelegate {
     //MARK: vars
     var name : String?
     var email : String?
@@ -72,7 +72,7 @@ class AccountViewController: UIViewController , UIImagePickerController , UINavi
         nameTextField.text = name
         emailTextField.text = email
         passwordTextField.text = password
-        birthDatePicker.date = birthDate
+//        birthDatePicker.date = birthDate
         phoneTextField.text = phone
         profileImage.image = image
         
@@ -85,7 +85,7 @@ class AccountViewController: UIViewController , UIImagePickerController , UINavi
         let photoPicker = UIImagePickerController()
         photoPicker.sourceType = type
         photoPicker.allowsEditing = true
-        photoPicker.delegate = self
+       // photoPicker.delegate = self
         present(photoPicker, animated: true)
         
     }

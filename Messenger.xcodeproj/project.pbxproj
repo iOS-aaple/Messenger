@@ -13,12 +13,13 @@
 		3F0F51F9295C541100BD5DB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F51F7295C541100BD5DB6 /* Main.storyboard */; };
 		3F0F51FB295C541200BD5DB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F51FA295C541200BD5DB6 /* Assets.xcassets */; };
 		3F0F51FE295C541200BD5DB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F51FC295C541200BD5DB6 /* LaunchScreen.storyboard */; };
-		3F0F5207295C545400BD5DB6 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F5206295C545400BD5DB6 /* Home.storyboard */; };
-		3F0F5209295C546000BD5DB6 /* Account.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F5208295C546000BD5DB6 /* Account.storyboard */; };
 		3F0F520B295C546900BD5DB6 /* Chat.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F0F520A295C546900BD5DB6 /* Chat.storyboard */; };
 		3F0F520E295C548900BD5DB6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F520D295C548900BD5DB6 /* HomeViewController.swift */; };
 		3F0F5210295C549400BD5DB6 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F520F295C549400BD5DB6 /* AccountViewController.swift */; };
 		3F0F5212295C54A000BD5DB6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F5211295C54A000BD5DB6 /* ChatViewController.swift */; };
+		3FC51CBE295CF5E3005DD47E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC51CBD295CF5E3005DD47E /* Data.swift */; };
+		3FC51CC1295CF65E005DD47E /* SingupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC51CC0295CF65E005DD47E /* SingupViewController.swift */; };
+		3FC51CC3295CF6CF005DD47E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FC51CC2295CF6CF005DD47E /* GoogleService-Info.plist */; };
 		845C5864295CBDEB009CDCC9 /* peopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C5863295CBDEB009CDCC9 /* peopleCell.swift */; };
 		845C5866295CBF51009CDCC9 /* customeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C5865295CBF51009CDCC9 /* customeView.swift */; };
 		AF03F9EC295C880A00D4A255 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F9EB295C880A00D4A255 /* PeopleViewController.swift */; };
@@ -38,12 +39,13 @@
 		3F0F51FA295C541200BD5DB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F0F51FD295C541200BD5DB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F0F51FF295C541200BD5DB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F0F5206295C545400BD5DB6 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		3F0F5208295C546000BD5DB6 /* Account.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Account.storyboard; sourceTree = "<group>"; };
 		3F0F520A295C546900BD5DB6 /* Chat.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Chat.storyboard; sourceTree = "<group>"; };
 		3F0F520D295C548900BD5DB6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3F0F520F295C549400BD5DB6 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		3F0F5211295C54A000BD5DB6 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		3FC51CBD295CF5E3005DD47E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		3FC51CC0295CF65E005DD47E /* SingupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingupViewController.swift; sourceTree = "<group>"; };
+		3FC51CC2295CF6CF005DD47E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		845C5863295CBDEB009CDCC9 /* peopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = peopleCell.swift; sourceTree = "<group>"; };
 		845C5865295CBF51009CDCC9 /* customeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customeView.swift; sourceTree = "<group>"; };
 		AF03F9EB295C880A00D4A255 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PeopleViewController.swift; path = Messenger/View/PeopleViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -84,6 +86,7 @@
 		3F0F51F0295C541100BD5DB6 /* Messenger */ = {
 			isa = PBXGroup;
 			children = (
+				3FC51CBC295CF5B7005DD47E /* Model */,
 				3F0F520C295C547400BD5DB6 /* Controller */,
 				3F0F5205295C544700BD5DB6 /* View */,
 				3F0F51F1295C541100BD5DB6 /* AppDelegate.swift */,
@@ -93,6 +96,7 @@
 				3F0F51FA295C541200BD5DB6 /* Assets.xcassets */,
 				3F0F51FC295C541200BD5DB6 /* LaunchScreen.storyboard */,
 				3F0F51FF295C541200BD5DB6 /* Info.plist */,
+				3FC51CC2295CF6CF005DD47E /* GoogleService-Info.plist */,
 			);
 			path = Messenger;
 			sourceTree = "<group>";
@@ -100,8 +104,6 @@
 		3F0F5205295C544700BD5DB6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3F0F5206295C545400BD5DB6 /* Home.storyboard */,
-				3F0F5208295C546000BD5DB6 /* Account.storyboard */,
 				3F0F520A295C546900BD5DB6 /* Chat.storyboard */,
 			);
 			path = View;
@@ -115,8 +117,17 @@
 				3F0F520F295C549400BD5DB6 /* AccountViewController.swift */,
 				845C5865295CBF51009CDCC9 /* customeView.swift */,
 				3F0F5211295C54A000BD5DB6 /* ChatViewController.swift */,
+				3FC51CC0295CF65E005DD47E /* SingupViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		3FC51CBC295CF5B7005DD47E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3FC51CBD295CF5E3005DD47E /* Data.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		AF03F9F1295C8AAF00D4A255 /* home */ = {
@@ -199,9 +210,8 @@
 				3F0F520B295C546900BD5DB6 /* Chat.storyboard in Resources */,
 				3F0F51FE295C541200BD5DB6 /* LaunchScreen.storyboard in Resources */,
 				3F0F51FB295C541200BD5DB6 /* Assets.xcassets in Resources */,
-				3F0F5209295C546000BD5DB6 /* Account.storyboard in Resources */,
 				3F0F51F9295C541100BD5DB6 /* Main.storyboard in Resources */,
-				3F0F5207295C545400BD5DB6 /* Home.storyboard in Resources */,
+				3FC51CC3295CF6CF005DD47E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,10 +229,12 @@
 				3F0F51F2295C541100BD5DB6 /* AppDelegate.swift in Sources */,
 				3F0F51F4295C541100BD5DB6 /* SceneDelegate.swift in Sources */,
 				845C5866295CBF51009CDCC9 /* customeView.swift in Sources */,
+				3FC51CBE295CF5E3005DD47E /* Data.swift in Sources */,
 				AF03F9F0295C8AA600D4A255 /* HomeCollectionViewCell.swift in Sources */,
 				3F0F5212295C54A000BD5DB6 /* ChatViewController.swift in Sources */,
 				AF03F9EE295C8A9600D4A255 /* HomeTableViewCell.swift in Sources */,
 				3F0F520E295C548900BD5DB6 /* HomeViewController.swift in Sources */,
+				3FC51CC1295CF65E005DD47E /* SingupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
