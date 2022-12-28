@@ -185,36 +185,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Fab-KQ-tz5">
-                                <rect key="frame" x="16" y="167" width="361" height="44"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Stu-mQ-gkI">
+                                <rect key="frame" x="16" y="169" width="361" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="ify-Cb-CT7" id="cJJ-xz-oPc"/>
+                                    <action selector="editingAction:" destination="ify-Cb-CT7" eventType="editingChanged" id="TfR-mh-na5"/>
                                 </connections>
-                            </searchBar>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1Bv-XM-lmN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="1Bv-XM-lmN" firstAttribute="trailing" secondItem="Fab-KQ-tz5" secondAttribute="trailing" constant="16" id="5vN-Ge-PeH"/>
+                            <constraint firstItem="1Bv-XM-lmN" firstAttribute="trailing" secondItem="Stu-mQ-gkI" secondAttribute="trailing" constant="16" id="1os-qv-v5p"/>
                             <constraint firstItem="1Bv-XM-lmN" firstAttribute="trailing" secondItem="aNH-KQ-JhY" secondAttribute="trailing" constant="16" id="AEh-S3-sDo"/>
                             <constraint firstItem="tr9-BM-VC3" firstAttribute="leading" secondItem="w43-8G-U9J" secondAttribute="trailing" constant="64" id="AVw-ui-04c"/>
                             <constraint firstItem="1Bv-XM-lmN" firstAttribute="trailing" secondItem="tr9-BM-VC3" secondAttribute="trailing" constant="142" id="Dmw-MQ-xMa"/>
+                            <constraint firstItem="Stu-mQ-gkI" firstAttribute="leading" secondItem="1Bv-XM-lmN" secondAttribute="leading" constant="16" id="F2n-HI-elP"/>
                             <constraint firstItem="w43-8G-U9J" firstAttribute="leading" secondItem="1Bv-XM-lmN" secondAttribute="leading" constant="16" id="GnB-dN-sIF"/>
+                            <constraint firstItem="Stu-mQ-gkI" firstAttribute="top" secondItem="w43-8G-U9J" secondAttribute="bottom" constant="26" id="N9S-TF-7od"/>
                             <constraint firstItem="aNH-KQ-JhY" firstAttribute="leading" secondItem="1Bv-XM-lmN" secondAttribute="leading" constant="16" id="SSM-ZU-g8h"/>
                             <constraint firstItem="tr9-BM-VC3" firstAttribute="top" secondItem="tDx-MX-JHW" secondAttribute="top" constant="98" id="Yj4-SA-Nzd"/>
                             <constraint firstItem="w43-8G-U9J" firstAttribute="top" secondItem="tDx-MX-JHW" secondAttribute="top" constant="93" id="fKm-JG-srZ"/>
-                            <constraint firstItem="Fab-KQ-tz5" firstAttribute="leading" secondItem="1Bv-XM-lmN" secondAttribute="leading" constant="16" id="jS5-G9-Q8k"/>
                             <constraint firstItem="1Bv-XM-lmN" firstAttribute="bottom" secondItem="aNH-KQ-JhY" secondAttribute="bottom" constant="23" id="t5L-yA-aJv"/>
-                            <constraint firstItem="aNH-KQ-JhY" firstAttribute="top" secondItem="Fab-KQ-tz5" secondAttribute="bottom" id="th0-sI-Mce"/>
-                            <constraint firstItem="Fab-KQ-tz5" firstAttribute="top" secondItem="w43-8G-U9J" secondAttribute="bottom" constant="24" id="uPh-2T-hI6"/>
                             <constraint firstItem="tr9-BM-VC3" firstAttribute="leading" secondItem="w43-8G-U9J" secondAttribute="trailing" constant="64" id="vBl-qZ-hIi"/>
+                            <constraint firstItem="aNH-KQ-JhY" firstAttribute="top" secondItem="Stu-mQ-gkI" secondAttribute="bottom" constant="8" symbolic="YES" id="vjR-vq-lhw"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="People" image="person" catalog="system" id="BIT-mv-8Wb"/>
                     <connections>
                         <outlet property="profileImage" destination="7sR-GH-YRM" id="ZLu-I5-dUS"/>
-                        <outlet property="searchBar" destination="Fab-KQ-tz5" id="DpG-n5-dKk"/>
                         <outlet property="searchDisplayController" destination="oGz-6C-BGB" id="zTO-03-Jcq"/>
                         <outlet property="tableView" destination="aNH-KQ-JhY" id="UuO-hk-bcd"/>
                     </connections>
@@ -223,7 +223,6 @@
                 <searchDisplayController id="oGz-6C-BGB">
                     <connections>
                         <outlet property="delegate" destination="ify-Cb-CT7" id="lzp-ml-NZy"/>
-                        <outlet property="searchBar" destination="Fab-KQ-tz5" id="6TT-2r-cCt"/>
                         <outlet property="searchContentsController" destination="ify-Cb-CT7" id="RSQ-bz-fDt"/>
                         <outlet property="searchResultsDataSource" destination="ify-Cb-CT7" id="F7Y-77-XTR"/>
                         <outlet property="searchResultsDelegate" destination="ify-Cb-CT7" id="qTc-Qg-16d"/>

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController {
+class AccountViewController: UIViewController , UIImagePickerController , UINavigationControllerDelegate {
     //MARK: vars
     var name : String?
     var email : String?

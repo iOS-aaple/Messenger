@@ -19,13 +19,14 @@
 		3F0F520E295C548900BD5DB6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F520D295C548900BD5DB6 /* HomeViewController.swift */; };
 		3F0F5210295C549400BD5DB6 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F520F295C549400BD5DB6 /* AccountViewController.swift */; };
 		3F0F5212295C54A000BD5DB6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F5211295C54A000BD5DB6 /* ChatViewController.swift */; };
-		3F0F5215295C555800BD5DB6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3F0F5214295C555800BD5DB6 /* FirebaseAuth */; };
-		3F0F5217295C555800BD5DB6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3F0F5216295C555800BD5DB6 /* FirebaseFirestore */; };
 		845C5864295CBDEB009CDCC9 /* peopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C5863295CBDEB009CDCC9 /* peopleCell.swift */; };
 		845C5866295CBF51009CDCC9 /* customeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C5865295CBF51009CDCC9 /* customeView.swift */; };
 		AF03F9EC295C880A00D4A255 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F9EB295C880A00D4A255 /* PeopleViewController.swift */; };
 		AF03F9EE295C8A9600D4A255 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F9ED295C8A9600D4A255 /* HomeTableViewCell.swift */; };
 		AF03F9F0295C8AA600D4A255 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F9EF295C8AA600D4A255 /* HomeCollectionViewCell.swift */; };
+		E4A84FD1295CEB22000E0AAF /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E4A84FD0295CEB22000E0AAF /* FirebaseAuth */; };
+		E4A84FD3295CEB22000E0AAF /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E4A84FD2295CEB22000E0AAF /* FirebaseDatabase */; };
+		E4A84FD5295CEB22000E0AAF /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E4A84FD4295CEB22000E0AAF /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,8 +56,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F0F5215295C555800BD5DB6 /* FirebaseAuth in Frameworks */,
-				3F0F5217295C555800BD5DB6 /* FirebaseFirestore in Frameworks */,
+				E4A84FD3295CEB22000E0AAF /* FirebaseDatabase in Frameworks */,
+				E4A84FD1295CEB22000E0AAF /* FirebaseAuth in Frameworks */,
+				E4A84FD5295CEB22000E0AAF /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -145,8 +147,9 @@
 			);
 			name = Messenger;
 			packageProductDependencies = (
-				3F0F5214295C555800BD5DB6 /* FirebaseAuth */,
-				3F0F5216295C555800BD5DB6 /* FirebaseFirestore */,
+				E4A84FD0295CEB22000E0AAF /* FirebaseAuth */,
+				E4A84FD2295CEB22000E0AAF /* FirebaseDatabase */,
+				E4A84FD4295CEB22000E0AAF /* FirebaseFirestore */,
 			);
 			productName = Messenger;
 			productReference = 3F0F51EE295C541100BD5DB6 /* Messenger.app */;
@@ -177,7 +180,7 @@
 			);
 			mainGroup = 3F0F51E5295C541100BD5DB6;
 			packageReferences = (
-				3F0F5213295C555800BD5DB6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E4A84FCF295CEB22000E0AAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 3F0F51EF295C541100BD5DB6 /* Products */;
 			projectDirPath = "";
@@ -441,7 +444,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3F0F5213295C555800BD5DB6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		E4A84FCF295CEB22000E0AAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -452,14 +455,19 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3F0F5214295C555800BD5DB6 /* FirebaseAuth */ = {
+		E4A84FD0295CEB22000E0AAF /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F0F5213295C555800BD5DB6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = E4A84FCF295CEB22000E0AAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
-		3F0F5216295C555800BD5DB6 /* FirebaseFirestore */ = {
+		E4A84FD2295CEB22000E0AAF /* FirebaseDatabase */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3F0F5213295C555800BD5DB6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = E4A84FCF295CEB22000E0AAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		E4A84FD4295CEB22000E0AAF /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4A84FCF295CEB22000E0AAF /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
