@@ -215,19 +215,10 @@
                     <tabBarItem key="tabBarItem" title="People" image="person" catalog="system" id="BIT-mv-8Wb"/>
                     <connections>
                         <outlet property="profileImage" destination="7sR-GH-YRM" id="ZLu-I5-dUS"/>
-                        <outlet property="searchDisplayController" destination="oGz-6C-BGB" id="zTO-03-Jcq"/>
                         <outlet property="tableView" destination="aNH-KQ-JhY" id="UuO-hk-bcd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nEK-nr-TDd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="oGz-6C-BGB">
-                    <connections>
-                        <outlet property="delegate" destination="ify-Cb-CT7" id="lzp-ml-NZy"/>
-                        <outlet property="searchContentsController" destination="ify-Cb-CT7" id="RSQ-bz-fDt"/>
-                        <outlet property="searchResultsDataSource" destination="ify-Cb-CT7" id="F7Y-77-XTR"/>
-                        <outlet property="searchResultsDelegate" destination="ify-Cb-CT7" id="qTc-Qg-16d"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2658.7786259541986" y="-2.1126760563380285"/>
         </scene>

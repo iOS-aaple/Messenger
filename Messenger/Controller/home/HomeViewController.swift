@@ -13,7 +13,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     var conversationArr = [String]()
-//    let users = [User]()
+   let users = [User]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,14 +36,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         //            }, withCancelBlock: nil )
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return users.count
-        return 10
+       return users.count
+    
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeTableViewCell
         let user = users[indexPath.row]
-        cell.conversationLabel.text = user.name
-        cell.conversationImage.image = user.image
+        cell.conversationLabel.text = user.fullName
+        cell.conversationImage.image = UIImage(named: user.profileImage)
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
