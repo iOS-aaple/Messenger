@@ -6,9 +6,13 @@
 //
 
 import UIKit
-
+import Firebase
+import FirebaseDatabase
+import FirebaseFirestore
 class PeopleViewController: UIViewController {
 
+    var users = [NSDictionary]()
+    
     let data = [("Shaden","disco"),
                 ("Aamer","disco-2"),
                 ("Munira","disco"),
@@ -34,6 +38,7 @@ class PeopleViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        fethData()
     }
     
 
@@ -67,19 +72,65 @@ class PeopleViewController: UIViewController {
         
     }
     
+   func fethData(){
+       
+       var db: DatabaseReference!
+        db = Database.database().reference()
+        // var userInfo = NSArray()
+//       db.child("users").observe(.value) { result,err in
+//           if err != nil {
+//               print("error")
+//           }
+//           else{
+//               if let userInfo = result.value as? NSDictionary {
+//
+//                   for user in userInfo {
+//                       print(user.value["email"])
+//                   }
+//
+//               }
+//           }
+       db.child("users").observe(.value) { resualt,err in
+           
+           let users = resualt.value as! NSDictionary
+           for user in users{
+               let user = user.value as! NSDictionary
+               self.users.append(user)
+               
+       }
+           DispatchQueue.main.async {
+               self.tableView.reloadData()
+           }
+           print(self.users)
+       
+           
+//               for user in usersInfo {
+//                   let userDict = user as! NSDictionary
+//                   self.users.append(userDict)
+//
+//               }
+               
+            
+          // }
+       }
+    }
+    
 }
 
 extension PeopleViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        filtereUser.count
+       // filtereUser.count
+        users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "peopleCell", for: indexPath) as! peopleCell
-        cell.cellID = indexPath.row
-        cell.friendName.text = filtereUser[indexPath.row].0
-        cell.friendImage.image = UIImage(named: filtereUser[indexPath.row].1)
+       // cell.cellID = indexPath.row
+//        cell.friendName.text = filtereUser[indexPath.row].0
+//        cell.friendImage.image = UIImage(named: filtereUser[indexPath.row].1)
+        cell.friendName.text = users[indexPath.row]["fullName"] as! String
+        
         return cell
     }
     

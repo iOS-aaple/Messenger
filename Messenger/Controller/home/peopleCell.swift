@@ -11,11 +11,12 @@ class peopleCell: UITableViewCell {
 
     @IBOutlet weak var friendImage: UIImageView!
     @IBOutlet weak var friendName: UILabel!
+    var userName = String()
     var cellID : Int = Int()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        friendName.text = userName
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

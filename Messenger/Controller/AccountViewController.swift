@@ -9,14 +9,14 @@ import UIKit
 import FirebaseDatabase
 import FirebaseFirestore
 import Firebase
-
+import FirebaseAuth
 class AccountViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     //MARK: vars
     var name : String?
     var email : String?
     var password : String?
     var profilePhoto : Data?
-    
+    var userID : String?
 
     //MARK: Connections
     @IBOutlet weak var nameTextField: UITextField!
@@ -34,6 +34,8 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate &
     override func viewDidLoad() {
         super.viewDidLoad()
         disableButtons()
+        print("❤️")
+        print("\(userID)")
     }
     
     // Activation
@@ -76,6 +78,17 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate &
     
     @IBAction func logoutAction(_ sender: Any) {
         
+        let firebaseAuth = Auth.auth()
+    do {
+      try firebaseAuth.signOut()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let loginView = storyboard.instantiateViewController(withIdentifier: "Login")
+        loginView.modalPresentationStyle = .fullScreen
+        present(loginView, animated: true)
+    } catch let signOutError as NSError {
+      print("Error signing out: %@", signOutError)
+    }
+      
     }
     
     
