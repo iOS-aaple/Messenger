@@ -6,13 +6,16 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import FirebaseFirestore
+import Firebase
 
-class AccountViewController: UIViewController, UINavigationControllerDelegate {
+class AccountViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     //MARK: vars
     var name : String?
     var email : String?
     var password : String?
-    var image : UIImage?
+    var profilePhoto : Data?
     
 
     //MARK: Connections
@@ -61,32 +64,47 @@ class AccountViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     @IBAction func saveAction(_ sender: Any) {
-        nameTextField.text = name
-        emailTextField.text = email
-        passwordTextField.text = password
-        profileImage.image = image
+        
+        let updateUser = User(fullName: nameTextField.text! , email: emailTextField.text!, password: passwordTextField.text!, profileImage: "\(profilePhoto!)", id: "HWYZd0V4n1ONWVXNzZ8Rzyc2DBI3")
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        ref.child("users").child("HWYZd0V4n1ONWVXNzZ8Rzyc2DBI3").setValue(["email":updateUser.email,"fullName":updateUser.fullName,"password":updateUser.password,"imageProfile":updateUser.profileImage])
+        print("اي حاجه")
+
         
     }
     
+    @IBAction func logoutAction(_ sender: Any) {
+        
+    }
+    
+    
+    func update(){
+        
+    }
     
     //MARK: Get Image Setup
     
     private func getImage(type : UIImagePickerController.SourceType){
         let photoPicker = UIImagePickerController()
-        photoPicker.sourceType = type
+        photoPicker.sourceType = .photoLibrary
         photoPicker.allowsEditing = true
-       // photoPicker.delegate = self
+        photoPicker.delegate = self
         present(photoPicker, animated: true)
         
     }
     
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        dismiss(animated: true)
-        guard let image = info[.originalImage] as? UIImage else{
-            print("IMAGE NOT FOUND")
-            return
+            if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
+
+                profileImage.image = image
+                profileImage.contentMode = .scaleToFill
+                profilePhoto = image.pngData()!
+
+            }
+        picker.dismiss(animated: true)
         }
-        profileImage.image = image
-    }
+    
+    
+
 }
