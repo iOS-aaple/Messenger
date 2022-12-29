@@ -9,7 +9,7 @@ import UIKit
 
 class peopleCell: UITableViewCell {
 
-    @IBOutlet weak var friednImage: UIImageView!
+    @IBOutlet weak var friendImage: UIImageView!
     @IBOutlet weak var friendName: UILabel!
     var cellID : Int = Int()
     

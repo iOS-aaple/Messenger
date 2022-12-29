@@ -312,7 +312,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Gq-Bq-xeA">
-                                <rect key="frame" x="151.66666666666666" y="301.66666666666669" width="89.666666666666657" height="31.666666666666686"/>
+                                <rect key="frame" x="151.66666666666663" y="301.66666666666669" width="89.666666666666686" height="31.666666666666686"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Continue">
                                     <fontDescription key="titleFontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="15"/>
@@ -447,7 +447,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="361" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HH5-5g-iUO" customClass="ciercleView" customModule="Messenger" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HH5-5g-iUO">
                                                     <rect key="frame" x="17" y="0.0" width="45" height="43.333333333333336"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gic-68-iUZ">
@@ -490,13 +490,13 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="friendImage" destination="gic-68-iUZ" id="iqH-VG-Q8n"/>
                                             <outlet property="friendName" destination="167-fe-kQr" id="DvD-tq-OuQ"/>
-                                            <outlet property="peopleImage" destination="gic-68-iUZ" id="bR0-8c-Vbf"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QlK-J5-RYP" customClass="ciercleView" customModule="Messenger" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QlK-J5-RYP">
                                 <rect key="frame" x="16" y="93" width="62" height="50"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fjH-bl-0oC">
@@ -607,7 +607,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="345" height="43"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="e8G-mz-hM4">
-                                                <rect key="frame" x="0.0" y="1.6666666666666679" width="40" height="40.333333333333336"/>
+                                                <rect key="frame" x="0.0" y="1.6666666666666679" width="40" height="40.333333333333329"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="wkf-M2-hyR"/>
                                                 </constraints>
