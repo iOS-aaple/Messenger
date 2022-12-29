@@ -11,13 +11,17 @@ import FirebaseAuth
 import Firebase
 import FirebaseFirestore
 import FirebaseDatabase
-class SingupViewController: UIViewController {
+class SingupViewController: UIViewController,UIImagePickerControllerDelegate & UINavigationControllerDelegate  {
 
+    @IBOutlet weak var addProfileImage: UIButton!
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var errorMessage: UILabel!
     @IBOutlet weak var confirmPassswordTextFiled: UITextField!
     @IBOutlet weak var passwordTextFiled: UITextField!
     @IBOutlet weak var emailTextFiled: UITextField!
     @IBOutlet weak var fullNameTextFiled: UITextField!
+    
+    var userImage = Data()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,9 +29,34 @@ class SingupViewController: UIViewController {
         errorMessage.isHidden = true
         passwordTextFiled.layer.cornerRadius = 10
         confirmPassswordTextFiled.layer.cornerRadius = 10
+        profileImage.isHidden = true
     }
     
+    // MARK: - Action
 
+    @IBAction func addProfileImage(_ sender: UIButton) {
+        
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true)
+        
+    }
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
+
+            profileImage.image = image
+            profileImage.contentMode = .scaleToFill
+            userImage = image.pngData()!
+            profileImage.isHidden = false
+            addProfileImage.isHidden = true
+        }
+        picker.dismiss(animated: true)
+    }
+    
     
     // MARK: - Navigation
 
@@ -56,7 +85,7 @@ class SingupViewController: UIViewController {
                     let newUser = User(fullName: self.fullNameTextFiled.text!, email: self.emailTextFiled.text!, password: self.passwordTextFiled.text!, profileImage: "",id: "\(result!.user.uid)")
                     var ref: DatabaseReference!
                      ref = Database.database().reference()
-                     ref.child("users").child(newUser.id).setValue(["email":newUser.email,"fullName":newUser.fullName,"password":newUser.password,"imageProfile":""])
+                    ref.child("users").child(newUser.id).setValue(["email":newUser.email,"fullName":newUser.fullName,"password":newUser.password,"imageProfile":"\(self.userImage)"])
                     
                     // send Notification
                     

@@ -14,6 +14,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     var conversationArr = [String]()
    let users = [User]()
+    var userID = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         

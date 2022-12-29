@@ -40,8 +40,10 @@ class ViewController: UIViewController {
                 self.passwordTextFiled.layer.borderColor = UIColor.red.cgColor
                 
             } else{
-               let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeView = storyboard.instantiateViewController(withIdentifier: "HomeView")
+               
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let homeView = storyboard.instantiateViewController(withIdentifier: "TabBar") as! TabBarViewController
+                homeView.userID = "\(result!.user.uid)"
                 homeView.modalPresentationStyle = .fullScreen
                 self.present(homeView, animated: true)
             }

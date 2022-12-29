@@ -20,6 +20,8 @@
 		3FC51CBE295CF5E3005DD47E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC51CBD295CF5E3005DD47E /* Data.swift */; };
 		3FC51CC1295CF65E005DD47E /* SingupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC51CC0295CF65E005DD47E /* SingupViewController.swift */; };
 		3FC51CC3295CF6CF005DD47E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FC51CC2295CF6CF005DD47E /* GoogleService-Info.plist */; };
+		3FF607B0295D4F6800B63A6C /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF607AF295D4F6800B63A6C /* NavigationViewController.swift */; };
+		3FF607B2295D53F100B63A6C /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF607B1295D53F100B63A6C /* TabBarViewController.swift */; };
 		845C5864295CBDEB009CDCC9 /* peopleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C5863295CBDEB009CDCC9 /* peopleCell.swift */; };
 		845C5866295CBF51009CDCC9 /* customeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845C5865295CBF51009CDCC9 /* customeView.swift */; };
 		AF03F9EC295C880A00D4A255 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF03F9EB295C880A00D4A255 /* PeopleViewController.swift */; };
@@ -46,6 +48,8 @@
 		3FC51CBD295CF5E3005DD47E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		3FC51CC0295CF65E005DD47E /* SingupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingupViewController.swift; sourceTree = "<group>"; };
 		3FC51CC2295CF6CF005DD47E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3FF607AF295D4F6800B63A6C /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
+		3FF607B1295D53F100B63A6C /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		845C5863295CBDEB009CDCC9 /* peopleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = peopleCell.swift; sourceTree = "<group>"; };
 		845C5865295CBF51009CDCC9 /* customeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = customeView.swift; sourceTree = "<group>"; };
 		AF03F9EB295C880A00D4A255 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PeopleViewController.swift; path = Messenger/View/PeopleViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -137,6 +141,8 @@
 				3F0F520D295C548900BD5DB6 /* HomeViewController.swift */,
 				AF03F9ED295C8A9600D4A255 /* HomeTableViewCell.swift */,
 				845C5863295CBDEB009CDCC9 /* peopleCell.swift */,
+				3FF607AF295D4F6800B63A6C /* NavigationViewController.swift */,
+				3FF607B1295D53F100B63A6C /* TabBarViewController.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -234,6 +240,8 @@
 				3F0F5212295C54A000BD5DB6 /* ChatViewController.swift in Sources */,
 				AF03F9EE295C8A9600D4A255 /* HomeTableViewCell.swift in Sources */,
 				3F0F520E295C548900BD5DB6 /* HomeViewController.swift in Sources */,
+				3FF607B0295D4F6800B63A6C /* NavigationViewController.swift in Sources */,
+				3FF607B2295D53F100B63A6C /* TabBarViewController.swift in Sources */,
 				3FC51CC1295CF65E005DD47E /* SingupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
