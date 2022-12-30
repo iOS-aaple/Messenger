@@ -20,6 +20,7 @@ class SingupViewController: UIViewController,UIImagePickerControllerDelegate & U
     @IBOutlet weak var passwordTextFiled: UITextField!
     @IBOutlet weak var emailTextFiled: UITextField!
     @IBOutlet weak var fullNameTextFiled: UITextField!
+    @IBOutlet weak var phoneNumber: UITextField!
     
     var userImage = Data()
     
@@ -82,10 +83,11 @@ class SingupViewController: UIViewController,UIImagePickerControllerDelegate & U
                 else{
                     
                   // create user info into database
-                    let newUser = User(fullName: self.fullNameTextFiled.text!, email: self.emailTextFiled.text!, password: self.passwordTextFiled.text!, profileImage: "",id: "\(result!.user.uid)")
+                    let newUser = User(fullName: self.fullNameTextFiled.text!, email: self.emailTextFiled.text!, password: self.passwordTextFiled.text!, profileImage: "",id: "\(result!.user.uid)",phoneNumber: self.phoneNumber.text!)
+                    
                     var ref: DatabaseReference!
                      ref = Database.database().reference()
-                    ref.child("users").child(newUser.id).setValue(["email":newUser.email,"fullName":newUser.fullName,"password":newUser.password,"imageProfile":"\(self.userImage)"])
+                    ref.child("users").child(newUser.id).setValue(["email":newUser.email,"fullName":newUser.fullName,"password":newUser.password,"imageProfile":"\(self.userImage)","phoneNumber":newUser.phoneNumber])
                     
                     // send Notification
                     

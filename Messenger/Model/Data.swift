@@ -14,5 +14,6 @@ struct User: Codable {
     let password: String
     let profileImage: String
     let id : String
+    let phoneNumber:String
 }
 
