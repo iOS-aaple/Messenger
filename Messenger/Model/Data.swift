@@ -17,3 +17,11 @@ struct User: Codable {
     let phoneNumber:String
 }
 
+
+struct Chat : Codable {
+    let text :String
+    let toId : String
+    let fromID : String
+    let timestamp : String
+}
+
