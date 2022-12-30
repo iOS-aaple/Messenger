@@ -16,3 +16,11 @@ struct User: Codable {
     let id : String
 }
 
+
+struct Chat : Codable {
+    let text :String
+    let toId : String
+    let fromID : String
+    let timestamp : String
+}
+

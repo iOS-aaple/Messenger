@@ -1,25 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17122"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="s0d-6b-0kx">
+        <!--Chat View Controller-->
+        <scene sceneID="3dF-Yo-MFZ">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <viewController id="0ER-1h-zCq" customClass="ChatViewController" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Poy-Lb-4gP">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="U68-hb-rHX">
+                                <rect key="frame" x="-2" y="59" width="393" height="710"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="msgCell" id="C5h-bU-KiR">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="C5h-bU-KiR" id="USG-vx-lIf">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3TY-m8-apK">
+                                <rect key="frame" x="0.0" y="779" width="393" height="39"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfp-td-Bpg">
+                                        <rect key="frame" x="329.66666666666669" y="0.0" width="63.333333333333314" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Send" cornerStyle="capsule">
+                                            <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="sendAction:" destination="0ER-1h-zCq" eventType="touchUpInside" id="B8h-1t-9NZ"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a messege ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lqd-5s-3uk">
+                                        <rect key="frame" x="0.0" y="0.0" width="319.66666666666669" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZLf-eb-qjP" userLabel="lineView">
+                                <rect key="frame" x="0.0" y="776" width="393" height="1"/>
+                                <color key="backgroundColor" red="0.36536800860000002" green="0.19105100629999999" blue="0.51749402280000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="gQH-fq-RnJ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zUe-7n-jeD"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ZLf-eb-qjP" firstAttribute="trailing" secondItem="U68-hb-rHX" secondAttribute="trailing" constant="2" id="1wn-d9-GsS"/>
+                            <constraint firstItem="ZLf-eb-qjP" firstAttribute="leading" secondItem="3TY-m8-apK" secondAttribute="leading" id="9lc-2j-iLa"/>
+                            <constraint firstItem="ZLf-eb-qjP" firstAttribute="leading" secondItem="Poy-Lb-4gP" secondAttribute="leading" id="9x8-rV-f7p"/>
+                            <constraint firstAttribute="trailing" secondItem="ZLf-eb-qjP" secondAttribute="trailing" id="AKT-fC-t6x"/>
+                            <constraint firstItem="ZLf-eb-qjP" firstAttribute="leading" secondItem="U68-hb-rHX" secondAttribute="leading" constant="2" id="IEM-yu-VcI"/>
+                            <constraint firstItem="U68-hb-rHX" firstAttribute="top" secondItem="zUe-7n-jeD" secondAttribute="top" id="KOn-hg-ymz"/>
+                            <constraint firstItem="3TY-m8-apK" firstAttribute="bottom" secondItem="zUe-7n-jeD" secondAttribute="bottom" id="LRl-oO-2dG"/>
+                            <constraint firstItem="3TY-m8-apK" firstAttribute="trailing" secondItem="ZLf-eb-qjP" secondAttribute="trailing" id="M2E-Rc-jo9"/>
+                            <constraint firstItem="3TY-m8-apK" firstAttribute="top" secondItem="U68-hb-rHX" secondAttribute="bottom" constant="10" id="iiP-wC-SbW"/>
+                            <constraint firstItem="3TY-m8-apK" firstAttribute="top" secondItem="ZLf-eb-qjP" secondAttribute="bottom" constant="2" id="l8d-yD-tet"/>
+                            <constraint firstItem="3TY-m8-apK" firstAttribute="top" secondItem="Poy-Lb-4gP" secondAttribute="top" constant="779" id="uHe-hu-7c1"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="msgTextField" destination="Lqd-5s-3uk" id="nIc-Oi-3GQ"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZWx-qM-EZz" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1231" y="42"/>
         </scene>
     </scenes>
     <resources>
