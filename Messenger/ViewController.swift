@@ -42,8 +42,9 @@ class ViewController: UIViewController {
             } else{
                
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeView = storyboard.instantiateViewController(withIdentifier: "TabBar") as! TabBarViewController
-                homeView.userID = "\(result!.user.uid)"
+                let homeView = storyboard.instantiateViewController(withIdentifier: "TabBar") as! TabBarView
+               let account = homeView.viewControllers![2] as! AccountViewController
+                account.userID = "\(result!.user.uid)"
                 homeView.modalPresentationStyle = .fullScreen
                 self.present(homeView, animated: true)
             }
