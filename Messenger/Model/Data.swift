@@ -25,3 +25,17 @@ struct Chat : Codable {
     let timestamp : String
 }
 
+
+struct ChatV : Codable {
+    let id: String
+    let users : [User]
+    let message: [Message]
+    
+}
+
+struct Message: Codable {
+    
+    let chatID: String
+    let text: String
+    
+}

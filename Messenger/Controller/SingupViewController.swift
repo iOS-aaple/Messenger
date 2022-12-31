@@ -89,6 +89,8 @@ class SingupViewController: UIViewController,UIImagePickerControllerDelegate & U
                      ref = Database.database().reference()
                     ref.child("users").child(newUser.id).setValue(["email":newUser.email,"fullName":newUser.fullName,"password":newUser.password,"imageProfile":"\(self.userImage)","phoneNumber":newUser.phoneNumber])
                     
+                    
+                    
                     // send Notification
                     
                     
