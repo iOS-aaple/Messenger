@@ -11,7 +11,7 @@ import FirebaseDatabase
 import FirebaseFirestore
 class PeopleViewController: UIViewController {
 
-    var users = [NSDictionary]()
+    var users = [User]()
     
     let data = [("Shaden","disco"),
                 ("Aamer","disco-2"),
@@ -76,44 +76,27 @@ class PeopleViewController: UIViewController {
        
        var db: DatabaseReference!
         db = Database.database().reference()
-        // var userInfo = NSArray()
-//       db.child("users").observe(.value) { result,err in
-//           if err != nil {
-//               print("error")
-//           }
-//           else{
-//               if let userInfo = result.value as? NSDictionary {
-//
-//                   for user in userInfo {
-//                       print(user.value["email"])
-//                   }
-//
-//               }
-//           }
+ 
        db.child("users").observe(.value) { resualt,err in
-           
+           let currentUser = Auth.auth().currentUser?.uid
            let users = resualt.value as! NSDictionary
+          
            for user in users{
-               let user = user.value as! NSDictionary
-               self.users.append(user)
-               
+               let userID = "\(user.key)"
+               if userID != currentUser {
+                   let user_ = user.value as! NSDictionary
+                   let newUser = User(fullName: user_["fullName"] as! String, email: user_["email"] as! String, password: user_["password"] as! String, profileImage: "", id: "\(user.key)", phoneNumber: user_["phoneNumber"] as! String)
+                   self.users.append(newUser)
+               }
        }
            DispatchQueue.main.async {
                self.tableView.reloadData()
+               print(self.users)
            }
-           print(self.users)
-       
-           
-//               for user in usersInfo {
-//                   let userDict = user as! NSDictionary
-//                   self.users.append(userDict)
-//
-//               }
-               
-            
-          // }
+  
        }
     }
+    
     
 }
 
@@ -129,13 +112,21 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource{
        // cell.cellID = indexPath.row
 //        cell.friendName.text = filtereUser[indexPath.row].0
 //        cell.friendImage.image = UIImage(named: filtereUser[indexPath.row].1)
-        cell.friendName.text = users[indexPath.row]["fullName"] as! String
+        cell.friendName.text = users[indexPath.row].fullName
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         70
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let chatView = storyboard.instantiateViewController(withIdentifier: "ChatView") as! ChatViewController
+        chatView.receiver = users[indexPath.row].id
+        chatView.modalPresentationStyle = .fullScreen
+        present(chatView, animated: true)
     }
     
 }

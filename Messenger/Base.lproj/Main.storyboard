@@ -805,13 +805,13 @@
         <!--Chat View Controller-->
         <scene sceneID="R0b-Bh-ahP">
             <objects>
-                <viewController id="Cma-10-K20" customClass="ChatViewController" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatView" id="Cma-10-K20" customClass="ChatViewController" customModule="Messenger" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f8C-xm-37y">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="4CI-rB-xnw">
-                                <rect key="frame" x="-2" y="59" width="393" height="710"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="709"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="msgCell" id="jBU-Sp-MuE">
@@ -824,12 +824,19 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iBF-wF-w6U">
-                                <rect key="frame" x="0.0" y="779" width="393" height="39"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="szx-d3-JKf">
+                                <rect key="frame" x="0.0" y="768" width="393" height="50"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nG-a2-e6c">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a messege ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PIS-qR-C2Z">
+                                        <rect key="frame" x="0.0" y="0.0" width="329.66666666666669" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Zxi-eH-BRQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0nG-a2-e6c">
                                         <rect key="frame" x="329.66666666666669" y="0.0" width="63.333333333333314" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Send" cornerStyle="capsule">
@@ -839,45 +846,29 @@
                                             <action selector="sendAction:" destination="Cma-10-K20" eventType="touchUpInside" id="Lev-6r-jMG"/>
                                         </connections>
                                     </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a messege ..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PIS-qR-C2Z">
-                                        <rect key="frame" x="0.0" y="0.0" width="319.66666666666669" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                 </subviews>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbt-Y8-kpP" userLabel="lineView">
-                                <rect key="frame" x="0.0" y="776" width="393" height="1"/>
-                                <color key="backgroundColor" red="0.36536800860000002" green="0.19105100629999999" blue="0.51749402280000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="87v-qE-VzT"/>
-                                </constraints>
-                            </view>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="XTd-T8-u54"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="iBF-wF-w6U" firstAttribute="trailing" secondItem="fbt-Y8-kpP" secondAttribute="trailing" id="2m1-dZ-vBq"/>
-                            <constraint firstItem="iBF-wF-w6U" firstAttribute="top" secondItem="fbt-Y8-kpP" secondAttribute="bottom" constant="2" id="A0H-eh-y0A"/>
-                            <constraint firstItem="iBF-wF-w6U" firstAttribute="top" secondItem="f8C-xm-37y" secondAttribute="top" constant="779" id="Bbp-Og-qaG"/>
-                            <constraint firstItem="fbt-Y8-kpP" firstAttribute="leading" secondItem="4CI-rB-xnw" secondAttribute="leading" constant="2" id="DOq-n2-3AT"/>
-                            <constraint firstItem="fbt-Y8-kpP" firstAttribute="trailing" secondItem="4CI-rB-xnw" secondAttribute="trailing" constant="2" id="RNp-GR-dzU"/>
-                            <constraint firstItem="fbt-Y8-kpP" firstAttribute="leading" secondItem="f8C-xm-37y" secondAttribute="leading" id="RPd-OD-vGg"/>
-                            <constraint firstAttribute="trailing" secondItem="fbt-Y8-kpP" secondAttribute="trailing" id="SoD-EC-Rj0"/>
-                            <constraint firstItem="fbt-Y8-kpP" firstAttribute="leading" secondItem="iBF-wF-w6U" secondAttribute="leading" id="W4J-Ck-t0h"/>
-                            <constraint firstItem="iBF-wF-w6U" firstAttribute="bottom" secondItem="XTd-T8-u54" secondAttribute="bottom" id="Y2H-l8-66H"/>
-                            <constraint firstItem="4CI-rB-xnw" firstAttribute="top" secondItem="XTd-T8-u54" secondAttribute="top" id="hXe-7V-ViG"/>
-                            <constraint firstItem="iBF-wF-w6U" firstAttribute="top" secondItem="4CI-rB-xnw" secondAttribute="bottom" constant="10" id="oYz-he-uAU"/>
+                            <constraint firstItem="XTd-T8-u54" firstAttribute="trailing" secondItem="szx-d3-JKf" secondAttribute="trailing" id="6uy-1R-AAr"/>
+                            <constraint firstItem="szx-d3-JKf" firstAttribute="bottom" secondItem="XTd-T8-u54" secondAttribute="bottom" id="CYI-IW-jr8"/>
+                            <constraint firstItem="szx-d3-JKf" firstAttribute="top" secondItem="4CI-rB-xnw" secondAttribute="bottom" id="Eb2-Dg-YSH"/>
+                            <constraint firstItem="4CI-rB-xnw" firstAttribute="trailing" secondItem="XTd-T8-u54" secondAttribute="trailing" id="QBJ-BP-2hd"/>
+                            <constraint firstItem="4CI-rB-xnw" firstAttribute="top" secondItem="XTd-T8-u54" secondAttribute="top" id="R1U-cP-ogJ"/>
+                            <constraint firstItem="4CI-rB-xnw" firstAttribute="leading" secondItem="XTd-T8-u54" secondAttribute="leading" id="cfn-IJ-yWF"/>
+                            <constraint firstItem="szx-d3-JKf" firstAttribute="leading" secondItem="XTd-T8-u54" secondAttribute="leading" id="uM9-XN-xl9"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="messagesTable" destination="4CI-rB-xnw" id="7TG-Tx-AdA"/>
                         <outlet property="msgTextField" destination="PIS-qR-C2Z" id="LLY-eR-lF7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NPN-MH-ebp" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1007" y="632"/>
+            <point key="canvasLocation" x="1006.8702290076335" y="631.69014084507046"/>
         </scene>
     </scenes>
     <resources>

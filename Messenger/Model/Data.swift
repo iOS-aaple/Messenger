@@ -19,23 +19,24 @@ struct User: Codable {
 
 
 struct Chat : Codable {
-    let text :String
-    let toId : String
-    let fromID : String
-    let timestamp : String
+    let id :String
+    let message : Message
+    let users : User_
+    
 }
 
 
-struct ChatV : Codable {
-    let id: String
-    let users : [User]
-    let message: [Message]
+struct User_ : Codable {
+    let first: String
+    let second : String
+   
     
 }
 
 struct Message: Codable {
     
-    let chatID: String
+    let sendrID: String
     let text: String
+    let time: String
     
 }
