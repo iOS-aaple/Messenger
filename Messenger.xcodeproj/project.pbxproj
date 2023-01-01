@@ -16,6 +16,7 @@
 		3F0F520E295C548900BD5DB6 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F520D295C548900BD5DB6 /* HomeViewController.swift */; };
 		3F0F5210295C549400BD5DB6 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F520F295C549400BD5DB6 /* AccountViewController.swift */; };
 		3F0F5212295C54A000BD5DB6 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0F5211295C54A000BD5DB6 /* ChatViewController.swift */; };
+		3F7796882960CA9A00876A36 /* ChatCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7796872960CA9A00876A36 /* ChatCollectionViewCell.swift */; };
 		3FAAE270295EFF5400F6A4C8 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FAAE26F295EFF5400F6A4C8 /* TabBarView.swift */; };
 		3FC51CBE295CF5E3005DD47E /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC51CBD295CF5E3005DD47E /* Data.swift */; };
 		3FC51CC1295CF65E005DD47E /* SingupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC51CC0295CF65E005DD47E /* SingupViewController.swift */; };
@@ -43,6 +44,7 @@
 		3F0F520D295C548900BD5DB6 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3F0F520F295C549400BD5DB6 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		3F0F5211295C54A000BD5DB6 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		3F7796872960CA9A00876A36 /* ChatCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCollectionViewCell.swift; sourceTree = "<group>"; };
 		3FAAE26F295EFF5400F6A4C8 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		3FC51CBD295CF5E3005DD47E /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		3FC51CC0295CF65E005DD47E /* SingupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingupViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			children = (
 				AF03F9F1295C8AAF00D4A255 /* home */,
 				AF03F9EB295C880A00D4A255 /* PeopleViewController.swift */,
+				3F7796872960CA9A00876A36 /* ChatCollectionViewCell.swift */,
 				3F0F520F295C549400BD5DB6 /* AccountViewController.swift */,
 				845C5865295CBF51009CDCC9 /* customeView.swift */,
 				3FAAE26F295EFF5400F6A4C8 /* TabBarView.swift */,
@@ -237,6 +240,7 @@
 				3F0F5212295C54A000BD5DB6 /* ChatViewController.swift in Sources */,
 				AF03F9EE295C8A9600D4A255 /* HomeTableViewCell.swift in Sources */,
 				3F0F520E295C548900BD5DB6 /* HomeViewController.swift in Sources */,
+				3F7796882960CA9A00876A36 /* ChatCollectionViewCell.swift in Sources */,
 				3FC51CC1295CF65E005DD47E /* SingupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,14 +13,18 @@ import FirebaseFirestore
 class ChatViewController: UIViewController {
     
     
+    @IBOutlet weak var messagesTable: UICollectionView!
     //MARK: Connections
     @IBOutlet weak var msgTextField: UITextField!
-    @IBOutlet weak var messagesTable: UITableView!
+    
+    @IBOutlet weak var userNameLabel: UILabel!
     
     var messages = [NSDictionary]()
     var receiver = String()
     var chatID = String()
-
+    var fromID = String()
+    var toID = String() 
+    var userName = String()
 
     
     
@@ -31,10 +35,23 @@ class ChatViewController: UIViewController {
         messagesTable.delegate = self
         
         observeMessage()
-
+        getReceiverInfo(userID: toID)
         // Do any additional setup after loading the view.
     }
     
+    func  getReceiverInfo(userID:String) {
+        var db: DatabaseReference!
+        db = Database.database().reference().child("users")
+        db.child("\(userID)").observeSingleEvent(of: .value) { snapshot in
+            if let user = snapshot.value as? NSDictionary {
+                
+                DispatchQueue.main.async {
+                    self.userNameLabel.text = user["fullName"] as! String
+                }
+
+            }
+        }
+    }
 
     @IBAction func sendAction(_ sender: Any) {
         
@@ -47,7 +64,7 @@ class ChatViewController: UIViewController {
         
         ref = Database.database().reference().child("Chats").child("\(chatID)").child("Message")
        let childRef = ref.childByAutoId()
-           childRef.updateChildValues(["senderID":"\(sendrID!)","text" : msgTextField.text!,"time":"\(Date.timeIntervalBetween1970AndReferenceDate)"])
+        childRef.updateChildValues(["senderID":"\(sendrID!)","text" : msgTextField.text!,"time":"\(Date())"])
         msgTextField.text = ""
     }
     
@@ -63,13 +80,16 @@ class ChatViewController: UIViewController {
                 print(message)
                 self.messages.append(message)
                 self.messagesTable.reloadData()
-            
+                
                 print(self.messages)
             }
                 
         }
     }
     
+    @IBAction func backToHome(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
     
 //    func textFieldShouldReturn(textfield : UITextField)-> Bool{
 //        handleSend()
@@ -78,20 +98,51 @@ class ChatViewController: UIViewController {
     
 
 }
-extension ChatViewController:UITableViewDelegate,UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension ChatViewController:UICollectionViewDelegate,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+            let currentID = Auth.auth().currentUser?.uid
+            let senderID = messages[indexPath.row]["senderID"] as! String
+            let timeFormatter = DateFormatter()
+                timeFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
+                
+        let date = timeFormatter.date(from: messages[indexPath.row]["time"] as! String)
+        
+        timeFormatter.dateFormat = "hh:mm a"
+        print(timeFormatter.string(from: date ?? Date()))
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currentID = Auth.auth().currentUser?.uid
-        let senderID = messages[indexPath.row]["senderID"] as! String
-
-        let cell = messagesTable.dequeueReusableCell(withIdentifier: "msgCell", for: indexPath)
-        cell.textLabel?.text = "\(messages[indexPath.row]["text"] as! String)"
-        cell.backgroundColor = currentID == senderID ? UIColor.blue : UIColor.white
-        return cell
+        let cell = messagesTable.dequeueReusableCell(withReuseIdentifier: "msgCell", for: indexPath) as! ChatCollectionViewCell
+        //cell.text.text = "\(messages[indexPath.row]["text"] as! String)"
+     //
+            
+        cell.messageText.text = "\(messages[indexPath.row]["text"] as! String)"
+        //cell.messageTime.text = "\(timeFormatter.string(from: date!))"
+        //cell.transform =  currentID == senderID ?  CGAffineTransform(scaleX: -1, y: 1) : CGAffineTransform(scaleX: 1, y: 1)
+        //cell.semanticContentAttribute =  currentID != senderID ? .forceLeftToRight : .unspecified
+      //  cell.semanticContentAttribute = .forceRightToLeft
+      //  cell.messageBody.layer.frame.size.height = cell.messageText.frame.height + 2
+      //  cell.messageBody.layer.frame.size.width = cell.frame.width / 2.5
+        cell.messageBody.backgroundColor = currentID == senderID ? UIColor.blue : UIColor.gray
+        cell.messageBody.layer.cornerRadius = 10
+       
+        cell.messageBody.widthAnchor.constraint(lessThanOrEqualTo: cell.widthAnchor).isActive = true
+        cell.messageBody.heightAnchor.constraint(lessThanOrEqualTo: cell.heightAnchor).isActive = true
+//        cell.messageBody.rightAnchor.constraint(equalTo: cell.rightAnchor).isActive = true
+        
+       
+        //cell.messageBody.rightAnchor.constraint(equalTo: cell.rightAnchor).isActive = true
+//        cell.messageBody.heightAnchor.constraint(lessThanOrEqualTo: cell.heightAnchor).isActive = true 
+//        messagesTable.register(ChatCollectionViewCell.self, forCellWithReuseIdentifier: "msgCell")
+        
+            return cell
     }
-
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width, height: 80)
+    }
 
 }
