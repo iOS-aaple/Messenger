@@ -20,7 +20,7 @@ struct User: Codable {
 
 struct Chat : Codable {
     let id :String
-    let message : Message
+    let message : [Message]
     let users : User_
     
 }

@@ -11,6 +11,7 @@ import FirebaseAuth
 import Firebase
 import FirebaseFirestore
 import FirebaseDatabase
+import FirebaseStorage
 class SingupViewController: UIViewController,UIImagePickerControllerDelegate & UINavigationControllerDelegate  {
 
     @IBOutlet weak var addProfileImage: UIButton!
@@ -58,6 +59,9 @@ class SingupViewController: UIViewController,UIImagePickerControllerDelegate & U
         picker.dismiss(animated: true)
     }
     
+    func registerUserIntoDatabase() {
+        
+    }
     
     // MARK: - Navigation
 
@@ -82,15 +86,29 @@ class SingupViewController: UIViewController,UIImagePickerControllerDelegate & U
                 }
                 else{
                     
-                  // create user info into database
-                    let newUser = User(fullName: self.fullNameTextFiled.text!, email: self.emailTextFiled.text!, password: self.passwordTextFiled.text!, profileImage: "",id: "\(result!.user.uid)",phoneNumber: self.phoneNumber.text!)
+                    // upload image to database
                     
-                    var ref: DatabaseReference!
-                     ref = Database.database().reference()
-                    ref.child("users").child(newUser.id).setValue(["email":newUser.email,"fullName":newUser.fullName,"password":newUser.password,"imageProfile":"\(self.userImage)","phoneNumber":newUser.phoneNumber])
-                    
-                    
-                    
+                    let storegRef : StorageReference!
+                    storegRef = Storage.storage().reference().child("\(UUID()) .png")
+                    print(self.userImage)
+                    storegRef.putData(self.userImage,metadata: nil) { storeg, error in
+                        
+                        if error != nil {
+                            print("\(error!.localizedDescription)")
+                            
+                        } else{
+                            
+                           
+                            // create user info into database
+                              let newUser = User(fullName: self.fullNameTextFiled.text!, email: self.emailTextFiled.text!, password: self.passwordTextFiled.text!, profileImage: "",id: "\(result!.user.uid)",phoneNumber: self.phoneNumber.text!)
+                              
+                              var ref: DatabaseReference!
+                               ref = Database.database().reference()
+                              ref.child("users").child(newUser.id).setValue(["email":newUser.email,"fullName":newUser.fullName,"password":newUser.password,"imageProfile":"\(self.userImage)","phoneNumber":newUser.phoneNumber])
+                        }
+                        
+                    }
+
                     // send Notification
                     
                     

@@ -9,7 +9,9 @@ import UIKit
 
 class HomeTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var conversationLabel: UILabel!
+    @IBOutlet weak var lastMessage: UILabel!
+    @IBOutlet weak var userName: UILabel!
+
     @IBOutlet weak var hourLabel: UILabel!
     @IBOutlet weak var conversationImage: UIImageView!
     override func awakeFromNib() {
