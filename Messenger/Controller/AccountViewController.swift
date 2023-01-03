@@ -10,7 +10,7 @@ import FirebaseDatabase
 import FirebaseFirestore
 import Firebase
 import FirebaseAuth
-
+import FirebaseStorage
 
 class AccountViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
@@ -90,7 +90,7 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate &
                 fullName: nameTextField.text! ,
                 email: emailTextField.text!,
                 password: passwordTextField.text!,
-                profileImage: "", id: "\(userID)",phoneNumber: phoneNumberTextField.text!)
+                profileImage: "", id: "\(userID)",phoneNumber: phoneNumberTextField.text!) // ther is problem her 
             
             // update the information in realtime database
             var ref: DatabaseReference!
@@ -155,6 +155,17 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate &
         db.child("users").child("\(userID)").observe(.value) { resualt in
             
             self.userInfo = resualt.value as! NSDictionary
+            
+            // fethc the data from storeage
+            let storageRef = Storage.storage().reference().child("\(self.userInfo["imageProfile"] as! String)")
+            storageRef.getData(maxSize: 5 * 1024 * 1024) { data, error in
+                
+                if error == nil {
+                    self.profileImage.image = UIImage(data: data!)
+                   
+                }
+            }
+            
             
             DispatchQueue.main.async {
                 self.nameTextField.text = self.userInfo["fullName"] as? String

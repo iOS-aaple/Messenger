@@ -25,7 +25,7 @@ class ChatViewController: UIViewController {
     var fromID = String()
     var toID = String() 
     var userName = String()
-
+    var chatType = Int()
     
     
     override func viewDidLoad() {
@@ -61,30 +61,60 @@ class ChatViewController: UIViewController {
       //  ref = Database.database().reference().child("Chats").child("\(UUID())").child("Users")
        // ref.setValue(["first":"\(receiver)","seconde":"\(Auth.auth().currentUser?.uid)"])
       //  ref.setValue(["Message":"","Users":""])
-        
-        ref = Database.database().reference().child("Chats").child("\(chatID)").child("Message")
-       let childRef = ref.childByAutoId()
-        childRef.updateChildValues(["senderID":"\(sendrID!)","text" : msgTextField.text!,"time":"\(Date())"])
+        if chatType == 0 {
+            ref = Database.database().reference().child("Chats").child("\(chatID)").child("Message").child("\(UUID())")
+            ref.setValue(["senderID":"\(sendrID!)","text" : msgTextField.text!,"time":"\(Date())"])
+            chatType = 1
+            
+        } else{
+            ref = Database.database().reference().child("Chats").child("\(chatID)").child("Message")
+            let childRef = ref.childByAutoId()
+            childRef.updateChildValues(["senderID":"\(sendrID!)","text" : msgTextField.text!,"time":"\(Date())"])
+            
+        }
         msgTextField.text = ""
     }
     
     func observeMessage() {
         
-        var ref:DatabaseReference!
-        ref  = Database.database().reference().child("Chats").child("\(chatID)").child("Message")
-        ref.observe(.childAdded) { snapshot , err in
-            print("❤️")
+        if chatType == 0 {
             
-            if let message = snapshot.value as? NSDictionary {
+            let chatID = UUID()
+   
+            var setUser: DatabaseReference!
+                setUser = Database.database().reference().child("Chats").child("\(chatID)").child("Users")
+                setUser.setValue(["first":"\(receiver)","seconde":"\(Auth.auth().currentUser!.uid)"])
+            
+            
+            var setMessage: DatabaseReference!
+            setMessage = Database.database().reference().child("Chats").child("\(chatID)").child("Message")
+          //  setMessage.setValue(["senderID":"","text" : "","time":""])
+            
+            
+            chatType = 1
+            self.chatID = "\(chatID)"
+            
+        } else {
+            
+            var ref:DatabaseReference!
+            ref  = Database.database().reference().child("Chats").child("\(chatID)").child("Message")
+            ref.observe(.childAdded) { snapshot , err in
                 print("❤️")
-                print(message)
-                self.messages.append(message)
-                self.messagesTable.reloadData()
                 
-                print(self.messages)
+                if let message = snapshot.value as? NSDictionary {
+                    print("❤️")
+                    print(message)
+                    self.messages.append(message)
+//                    self.messagesTable.scrollToItem(at: IndexPath(index: self.messages.count), at: .bottom, animated: true)
+                    self.messagesTable.reloadData()
+                    
+                    print(self.messages)
+                }
+                    
             }
-                
+            
         }
+     
     }
     
     @IBAction func backToHome(_ sender: UIButton) {
@@ -113,20 +143,20 @@ extension ChatViewController:UICollectionViewDelegate,UICollectionViewDataSource
         let date = timeFormatter.date(from: messages[indexPath.row]["time"] as! String)
         
         timeFormatter.dateFormat = "hh:mm a"
-        print(timeFormatter.string(from: date ?? Date()))
+        print(timeFormatter.string(from: date!))
 
         let cell = messagesTable.dequeueReusableCell(withReuseIdentifier: "msgCell", for: indexPath) as! ChatCollectionViewCell
         //cell.text.text = "\(messages[indexPath.row]["text"] as! String)"
      //
             
         cell.messageText.text = "\(messages[indexPath.row]["text"] as! String)"
-        //cell.messageTime.text = "\(timeFormatter.string(from: date!))"
+        cell.messageTime.text = "\(timeFormatter.string(from: date!))"
         //cell.transform =  currentID == senderID ?  CGAffineTransform(scaleX: -1, y: 1) : CGAffineTransform(scaleX: 1, y: 1)
         //cell.semanticContentAttribute =  currentID != senderID ? .forceLeftToRight : .unspecified
       //  cell.semanticContentAttribute = .forceRightToLeft
       //  cell.messageBody.layer.frame.size.height = cell.messageText.frame.height + 2
       //  cell.messageBody.layer.frame.size.width = cell.frame.width / 2.5
-        cell.messageBody.backgroundColor = currentID == senderID ? UIColor.blue : UIColor.gray
+        cell.messageBody.backgroundColor = currentID == senderID ? UIColor(red: 0.15, green: 0.59, blue: 0.75, alpha: 1.00) : UIColor.gray
         cell.messageBody.layer.cornerRadius = 10
        
         cell.messageBody.widthAnchor.constraint(lessThanOrEqualTo: cell.widthAnchor).isActive = true
