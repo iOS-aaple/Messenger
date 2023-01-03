@@ -9,15 +9,25 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import FBSDKLoginKit
+
 class ViewController: UIViewController {
+   
 
     @IBOutlet weak var passwordTextFiled: UITextField!
     @IBOutlet weak var emailTextFiled: UITextField!
     @IBOutlet weak var errorMassage: UILabel!
+    @IBOutlet weak var google: UIButton!
+    @IBOutlet weak var facbook: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         errorMassage.isHidden = true
+//        facbook.delegate = self
+        if let token = AccessToken.current,
+               !token.isExpired {
+               // User is logged in, do work such as go to next view controller.
+           }
     }
 
     // MARK: - Navigation
@@ -65,5 +75,36 @@ class ViewController: UIViewController {
         present(forgotPassowrdView, animated: true)
     }
     
+    @IBAction func facebookLogin(_ sender: UIButton) {
+       
+           let loginManager = LoginManager()
+           
+           if let _ = AccessToken.current {
+            
+               loginManager.logOut()
+               
+           } else {
+               
+               loginManager.logIn(permissions: [], from: self) { [weak self] (result, error) in
+                   guard error == nil else {
+                       // Error occurred
+                       print(error!.localizedDescription)
+                       return
+                   }
+                   // Check for cancel
+                   guard let result = result, !result.isCancelled else {
+                       print("User cancelled login")
+                       return
+                   }
+               
+                   Profile.loadCurrentProfile { (profile, error) in
+                     
+                   }
+               }
+           }
+    }
+    
+    @IBAction func googleLogin(_ sender: UIButton) {
+    }
     
 }
