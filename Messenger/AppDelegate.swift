@@ -6,12 +6,15 @@
 //
 
 import UIKit
+import Firebase
 import FirebaseCore
 import FBSDKCoreKit
+import GoogleSignIn
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDelegate {
 
-
+   
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
@@ -22,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
         UNUserNotificationCenter.current().delegate = self
         return true
     }
+    @available(iOS 9.0, *)
     func application(
            _ app: UIApplication,
            open url: URL,
@@ -33,6 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,UNUserNotificationCenterDe
                sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
                annotation: options[UIApplication.OpenURLOptionsKey.annotation]
            )
+           return GIDSignIn.sharedInstance.handle(url)
        }  
     // MARK: UISceneSession Lifecycle
 
