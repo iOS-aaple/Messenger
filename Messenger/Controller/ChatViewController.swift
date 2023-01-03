@@ -10,9 +10,12 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseFirestore
+import FirebaseStorage
+
 class ChatViewController: UIViewController {
     
     
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var messagesTable: UICollectionView!
     //MARK: Connections
     @IBOutlet weak var msgTextField: UITextField!
@@ -26,6 +29,7 @@ class ChatViewController: UIViewController {
     var toID = String() 
     var userName = String()
     var chatType = Int()
+    var imageProfile = Data() 
     
     
     override func viewDidLoad() {
@@ -45,9 +49,24 @@ class ChatViewController: UIViewController {
         db.child("\(userID)").observeSingleEvent(of: .value) { snapshot in
             if let user = snapshot.value as? NSDictionary {
                 
-                DispatchQueue.main.async {
-                    self.userNameLabel.text = user["fullName"] as! String
+                //get profile image
+                
+                var storageRef : StorageReference!
+                storageRef = Storage.storage().reference().child("\(user["imageProfile"] as! String)")
+                storageRef.getData(maxSize:  5 * 1024 * 1024) { data, error in
+                    if error != nil {
+                        print("error")
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            self.userNameLabel.text = user["fullName"] as? String
+                            self.profileImage.image = UIImage(data: data!)
+                        }
+                    }
                 }
+           
+                    
+            
 
             }
         }

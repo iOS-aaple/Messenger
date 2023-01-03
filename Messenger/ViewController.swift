@@ -18,6 +18,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         errorMassage.isHidden = true
+        
+      
     }
 
     // MARK: - Navigation
