@@ -10,6 +10,7 @@ import Firebase
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseFirestore
+import FirebaseStorage
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
@@ -110,13 +111,45 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeTableViewCell
+        
+        
+        let userRef:DatabaseReference!
+        userRef = Database.database().reference()
+        userRef.child("users").observe(.value) { snopshot, err in
+            let users = snopshot.value as! NSDictionary
+            let cureentUserID = self.chats[indexPath.row].users.second
+            
+            for user in users {
+                let userContent = user.value as! NSDictionary
+                if user.key as! String == self.chats[indexPath.row].users.second || user.key as! String == self.chats[indexPath.row].users.first {
+                    cell.userName.text = userContent["fullName"] as? String
+                    
+                    // get profile image
+                    
+                    let storageRef : StorageReference!
+                    storageRef = Storage.storage().reference().child("\(userContent["imageProfile"] as! String)")
+                    storageRef.getData(maxSize:  5 * 1024 * 1024) { data, error in
+                        if error != nil {
+                            print("error")
+                        }
+                        else {
+                            DispatchQueue.main.async {
+                                cell.conversationImage.image = UIImage(data: data!)
+                                
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+        
           
         let timeFormat = DateFormatter()
         timeFormat.dateFormat = "hh:mm a"
         let time = Date()
         let chat = chats[indexPath.row]
         var userInfo = getUserName(userID: chat.users.first)
-        cell.userName.text = chat.users.first
         cell.lastMessage.text = chat.message[chat.message.count-1].text
         cell.hourLabel.text = timeFormat.string(from: time)
         return cell
