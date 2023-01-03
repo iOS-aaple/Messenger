@@ -89,8 +89,9 @@ class SingupViewController: UIViewController,UIImagePickerControllerDelegate & U
                     // upload image to database
                     
                     let storegRef : StorageReference!
-                    storegRef = Storage.storage().reference().child("\(UUID()) .png")
-                    print(self.userImage)
+                    let path = "profileImages/\(UUID().uuidString).png"
+                    storegRef = Storage.storage().reference().child(path)
+                    
                     storegRef.putData(self.userImage,metadata: nil) { storeg, error in
                         
                         if error != nil {
@@ -104,18 +105,18 @@ class SingupViewController: UIViewController,UIImagePickerControllerDelegate & U
                               
                               var ref: DatabaseReference!
                                ref = Database.database().reference()
-                              ref.child("users").child(newUser.id).setValue(["email":newUser.email,"fullName":newUser.fullName,"password":newUser.password,"imageProfile":"\(self.userImage)","phoneNumber":newUser.phoneNumber])
+                              ref.child("users").child(newUser.id).setValue(["email":newUser.email,"fullName":newUser.fullName,"password":newUser.password,"imageProfile":"\(path)","phoneNumber":newUser.phoneNumber])
                         }
                         
                     }
 
                     // send Notification
                     
-                    
                   // back to login page
                     self.dismiss(animated: true)
                 }
             }
+            
         }
     }
     

@@ -19,6 +19,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //   let users = [User]()
     var chats = [Chat]()
     var userID = String()
+    var chatMessagesArr = [Message]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,23 +38,31 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
            
             if let chats = snapshot.value as? NSDictionary {
                 
+                
                   let chatID = snapshot.key
-                  let chatMessages = chats["Message"] as! NSDictionary
-                  let chatUsers = chats["Users"] as! NSDictionary
-                  var chatMessagesArr = [Message]()
+                 // let chatMessages = chats["Message"] as? NSDictionary
+                  let chatUsers = chats["Users"] as? NSDictionary
+                  
                 
-                    // convert messages to Message
-                for chatMesssage in chatMessages {
-                    let message = chatMesssage.value as! NSDictionary
-                    let mess = Message(sendrID: message["senderID"] as! String, text: message["text"] as! String, time: message["time"] as! String)
-                    
-                    chatMessagesArr.append(mess)
-                   
+                if let chatMessages = chats["Message"] as? NSDictionary {
+                    let messages = chatMessages as! NSDictionary
+                    self.convertToMessage(messages: messages)
                 }
+                    // convert messages to Message
+//                for chatMesssage in chatMessages {
+//                    let message = chatMessages.value as? NSDictionary
+//                    let mess = Message(sendrID: message["senderID"] as! String, text: message["text"] as! String, time: message["time"] as! String)
+//
+//                    chatMessagesArr.append(mess)
+//
+//                }
+             
+              
+               
                 
-                let usersInChat = User_(first: chatUsers["first"] as! String, second: chatUsers["seconde"] as! String)
+                let usersInChat = User_(first: chatUsers!["first"] as! String, second: chatUsers!["seconde"] as! String)
                 
-                let newChat = Chat(id: chatID, message: chatMessagesArr, users: usersInChat)
+                let newChat = Chat(id: chatID, message: self.chatMessagesArr, users: usersInChat)
                
                 // filter th chats
                 
@@ -81,6 +90,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     }
     
+    func convertToMessage(messages:NSDictionary){
+        for message in messages {
+            let mesg = message.value as! NSDictionary
+       
+           let mesgContent = Message(sendrID: mesg["senderID"] as! String, text: mesg["text"] as! String, time: mesg["time"] as! String)
+           
+        chatMessagesArr.append(mesgContent)
+            print("✅✅✅✅✅✅✅")
+           
+        }
+
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return chats.count
     
@@ -88,11 +110,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! HomeTableViewCell
-
+          
         let timeFormat = DateFormatter()
         timeFormat.dateFormat = "hh:mm a"
-        let time = Date(timeIntervalSince1970: Double(chats[indexPath.row].message.last!.time)!)
+        let time = Date()
         let chat = chats[indexPath.row]
+        var userInfo = getUserName(userID: chat.users.first)
         cell.userName.text = chat.users.first
         cell.lastMessage.text = chat.message[chat.message.count-1].text
         cell.hourLabel.text = timeFormat.string(from: time)
@@ -103,6 +126,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let sstoryBoard = UIStoryboard(name: "Main", bundle: nil)
         let chatView = sstoryBoard.instantiateViewController(withIdentifier: "ChatView") as! ChatViewController
         chatView.chatID = chats[indexPath.row].id
+        chatView.chatType = 1
         chatView.fromID = chats[indexPath.row].users.first == Auth.auth().currentUser?.uid ? chats[indexPath.row].users.first : chats[indexPath.row].users.second
         chatView.toID = chats[indexPath.row].users.first != Auth.auth().currentUser?.uid ? chats[indexPath.row].users.first : chats[indexPath.row].users.second  
         chatView.modalPresentationStyle = .fullScreen
@@ -110,6 +134,27 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+    
+    func getUserName(userID:String) -> NSDictionary{
+        print("\(userID)")
+        var data = NSDictionary()
+        DispatchQueue.main.async {
+            
+            
+           
+            var userRef : DatabaseReference!
+            userRef = Database.database().reference().child("users").child("\(userID)")
+            userRef.observe(.value) { snopshot,err in
+                var userData = snopshot.value as! NSDictionary
+                data = userData
+                
+            }
+            print("🟢🟢🟢🟢🟢🟢")
+            print(data)
+            print("🟢🟢🟢🟢🟢🟢")
+        }
+        return data
     }
 }
 
