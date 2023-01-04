@@ -12,6 +12,7 @@ import Firebase
 import FirebaseFirestore
 import FirebaseDatabase
 import FirebaseStorage
+
 class SingupViewController: UIViewController,UIImagePickerControllerDelegate & UINavigationControllerDelegate  {
 
     @IBOutlet weak var addProfileImage: UIButton!
@@ -59,9 +60,7 @@ class SingupViewController: UIViewController,UIImagePickerControllerDelegate & U
         picker.dismiss(animated: true)
     }
     
-    func registerUserIntoDatabase() {
-        
-    }
+  
     
     // MARK: - Navigation
 
@@ -75,6 +74,7 @@ class SingupViewController: UIViewController,UIImagePickerControllerDelegate & U
             confirmPassswordTextFiled.layer.cornerRadius = 10
             confirmPassswordTextFiled.layer.borderWidth = 0.5
         } else{
+            
             // signup
             
             Auth.auth().createUser(withEmail: emailTextFiled.text!, password: passwordTextFiled.text!) { result, err in
@@ -118,7 +118,7 @@ class SingupViewController: UIViewController,UIImagePickerControllerDelegate & U
             }
             
         }
-    }
+    } // end of signup()
     
     
     @IBAction func backToLogin(_ sender: Any) {
@@ -129,13 +129,13 @@ class SingupViewController: UIViewController,UIImagePickerControllerDelegate & U
     // MARK: - Notification
     
     
-//    func sendNotification(){
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound]) {  authorized, error in
-//            if authorized {
-//                    self.generateNotification(name: self.fullNameTextFiled.text!)
-//            }
-//        } // end of UNUserNotificationCenter
-//    }
+    func sendNotification(){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound]) {  authorized, error in
+            if authorized {
+                    self.generateNotification(name: self.fullNameTextFiled.text!)
+            }
+        } // end of UNUserNotificationCenter
+    } // end of sendNotification()
     
     func generateNotification(name:String){
         

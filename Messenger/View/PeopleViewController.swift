@@ -25,67 +25,36 @@ class PeopleViewController: UIViewController {
         fetshData()
     }
     
-
-//    @IBAction func editingAction(_ sender: UITextField) {
-//        filtereUser = []
-//
-//        if sender.text == ""{
-//            filtereUser = data
-//        } else {
-//            for name in data{
-//                if name.0.uppercased().contains((sender.text?.uppercased())!){
-//                    filtereUser.append(name)
-//                }
-//            }
-//        }
-//        self.tableView.reloadData()
-//
-//    }
     
    func fetshData(){
        
-//       var chats = NSDictionary()
-//       var dbForChats: DatabaseReference!
-//       dbForChats = Database.database().reference()
-//       dbForChats.child("Chats").observe(.childAdded){ resualt in
-//           chats = resualt.value as! NSDictionary
-//       }
-//        print("🌐 \(chats)")
+       var dbRef:DatabaseReference!
+            dbRef = Database.database().reference()
        
-       var dbForuser:DatabaseReference!
-       dbForuser = Database.database().reference()
-       
-       dbForuser.child("users").observe(.value) { resualt,err in
-           let currentUser = Auth.auth().currentUser?.uid
-           let users = resualt.value as! NSDictionary
+            dbRef.child("users").observe(.value) { resualt,err in
+                let currentUser = Auth.auth().currentUser?.uid
+                let users = resualt.value as! NSDictionary
           
-           for user in users{
-               let userID = "\(user.key)"
+                    for user in users{
+                        let userID = "\(user.key)"
              
- //              for userInChat in usersInChat {
-//                   let usersInChat = chat.value
-                  
-  //                 let userInCHAT = userInChat.value as! String
-  //                 if userInCHAT == currentUser! || userInCHAT == userID {
-   //                    print("❤️💚")
-   //                }else {
-                      
-                       if userID != currentUser {
+                        if userID != currentUser {
                            let user_ = user.value as! NSDictionary
                           
                            let newUser = User(fullName: user_["fullName"] as! String, email: user_["email"] as! String, password: user_["password"] as! String, profileImage: user_["imageProfile"] as! String , id: "\(user.key)", phoneNumber: user_["phoneNumber"] as! String)
+                            
                            self.users.append(newUser)
                        }
-             //      }
-           //    }
-       }
+
+                    }
+                
            DispatchQueue.main.async {
                self.tableView.reloadData()
-               print(self.users)
-           }
+           } // end of DispatchQueue
   
-       }
-    }
+                
+       } // end of observe
+    } //end of fetshData
     
 }
 
@@ -101,15 +70,18 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource{
         
         // get profile image  from the storage
         let storageRef : StorageReference!
-        storageRef = Storage.storage().reference().child("\(users[indexPath.row].profileImage)")
-        storageRef.getData(maxSize:  5 * 1024 * 1024) { data, error in
-            if error != nil {
+            storageRef = Storage.storage().reference().child("\(users[indexPath.row].profileImage)")
+            storageRef.getData(maxSize:  5 * 1024 * 1024) { data, error in
+                
+                if error != nil {
                 print("error")
-            }
-            DispatchQueue.main.async {
-                cell.friendImage.image = UIImage(data: data!)
-            }
-        }
+                    }
+                else {
+                    DispatchQueue.main.async {
+                        cell.friendImage.image = UIImage(data: data!)
+                    }
+                }
+        } // end of getData
         
         cell.friendName.text = users[indexPath.row].fullName
   
@@ -121,48 +93,46 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let chatView = storyboard.instantiateViewController(withIdentifier: "ChatView") as! ChatViewController
      
             
-     
         var chatRef : DatabaseReference!
-        chatRef = Database.database().reference()
-        chatRef.child("Chats").observe(.value){ result, err in
-            let chats = result.value as! NSDictionary
+            chatRef = Database.database().reference()
+            chatRef.child("Chats").observe(.value){ result, err in
+                let chats = result.value as! NSDictionary
            
-            for chat in chats {
-                let chatContent = chat.value as! NSDictionary
-                let usersInChat = chatContent["Users"] as! NSDictionary
-                let userID = Auth.auth().currentUser!.uid
-                for userInChat in usersInChat {
-                    if userInChat.value as! String == userID {
+                    for chat in chats {
+                        let chatContent = chat.value as! NSDictionary
+                        let usersInChat = chatContent["Users"] as! NSDictionary
+                        let userID = Auth.auth().currentUser!.uid
                         
-                        chatView.chatType = 1
-                        chatView.chatID = chat.key as! String
-                        chatView.fromID = userID
-                        chatView.toID =  self.users[indexPath.row].id
-                     
-                    }
-                    else {
+                            for userInChat in usersInChat {
+                                    if userInChat.value as! String == userID {
                         
-                        chatView.fromID = "\(userID)"
-                        chatView.toID = self.users[indexPath.row].id
-                        chatView.receiver = self.users[indexPath.row].id
-                        chatView.chatType = 0
-                        print(self.users[indexPath.row])
-                        chatView.modalPresentationStyle = .fullScreen
+                                        chatView.chatType = 1
+                                        chatView.chatID = chat.key as! String
+                                        chatView.fromID = userID
+                                        chatView.toID =  self.users[indexPath.row].id
                      
-                    }
-                }
-           }
+                                    }
+                                        else {
+                        
+                                            chatView.fromID = "\(userID)"
+                                            chatView.toID = self.users[indexPath.row].id
+                                            chatView.receiver = self.users[indexPath.row].id
+                                            chatView.chatType = 0
+                     
+                                        }
+                                    }
+                                }
            
-            if !chatView.isBeingPresented {
-                chatView.modalPresentationStyle = .fullScreen
-                self.present(chatView, animated: false)
-            }
+                        if !chatView.isBeingPresented {
+                            chatView.modalPresentationStyle = .fullScreen
+                            self.present(chatView, animated: false)
+                            }
+            } // end of observe
         }
-        
-    }
     
 }
