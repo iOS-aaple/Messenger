@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         errorMassage.isHidden = true
 //        facbook.delegate = self
         if let token = AccessToken.current,

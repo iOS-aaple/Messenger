@@ -18,11 +18,11 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate &
     var name : String?
     var email : String?
     var password : String?
-    var profilePhoto : Data?
+    var profilePhoto = Data()
     var userID = String()
     var userInfo = NSDictionary()
     var editMode = false
-
+    var imagePath = String()
     //MARK: Connections
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -86,16 +86,48 @@ class AccountViewController: UIViewController, UIImagePickerControllerDelegate &
         
         if passwordTextField.text! == confirmPasswordTextField.text! {
             
+            if !profilePhoto.isEmpty {
+                
+                let storageRef : StorageReference!
+                storageRef = Storage.storage().reference().child("\(self.userInfo["imageProfile"] as! String)")
+                storageRef.delete { error in
+                    if error != nil {
+                        print("error")
+                    }
+                }
+                
+                let path = "profileImages/\(UUID().uuidString).png"
+                
+                let storageRefe : StorageReference!
+                    storageRefe = Storage.storage().reference().child(path)
+                    storageRefe.putData(self.profilePhoto,metadata:nil) { imageData , error in
+                    if error != nil {
+                        print("error!")
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            self.imagePath = path
+                        }
+                    }
+                }
+                
+            }
+            else {
+                self.imagePath = self.userInfo["imageProfile"] as! String
+                
+            }
+            
             let updateUser = User(
                 fullName: nameTextField.text! ,
                 email: emailTextField.text!,
                 password: passwordTextField.text!,
-                profileImage: "", id: "\(userID)",phoneNumber: phoneNumberTextField.text!) // ther is problem her 
+                profileImage: self.imagePath, id: "\(userID)",phoneNumber: phoneNumberTextField.text!) // ther is problem her
             
+           
             // update the information in realtime database
             var ref: DatabaseReference!
-            ref = Database.database().reference()
-            ref.child("users").child("\(userID)").setValue(["email":updateUser.email,"fullName":updateUser.fullName,"password":updateUser.password,"imageProfile":updateUser.profileImage,"phoneNumber":updateUser.phoneNumber])
+                ref = Database.database().reference()
+                ref.child("users").child("\(userID)").setValue(["email":updateUser.email,"fullName":updateUser.fullName,"password":updateUser.password,"imageProfile":updateUser.profileImage,"phoneNumber":updateUser.phoneNumber])
             
             // update the information in Authentication
             
